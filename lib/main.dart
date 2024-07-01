@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'login_screen.dart';
 import 'dashboard_screen.dart';
+import 'blog_posts_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
           final username = ModalRoute.of(context)!.settings.arguments as String;
           return DashboardScreen(username: username);
         },
+        '/blogposts': (context) => BlogPostsScreen(),
       },
     );
   }

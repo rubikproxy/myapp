@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'api_service.dart';
+import 'blog_posts_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
   final String username;
@@ -11,20 +11,6 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
-  List<dynamic> blogPosts = [];
-
-  void _fetchBlogPosts() async {
-    try {
-      List<dynamic> posts = await ApiService.getBlogPosts();
-      setState(() {
-        blogPosts = posts;
-      });
-    } catch (e) {
-      // Handle error
-      print(e);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +19,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
         actions: [
           PopupMenuButton<String>(
             onSelected: (value) {
-              // Handle menu actions here
+              if (value == 'Logout') {
+                Navigator.pushReplacementNamed(context, '/');
+              }
             },
             itemBuilder: (BuildContext context) {
               return [
@@ -50,24 +38,68 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          ElevatedButton(
-            onPressed: _fetchBlogPosts,
-            child: Text('Fetch Blog Posts'),
-          ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: blogPosts.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(blogPosts[index]['title']),
-                  subtitle: Text(blogPosts[index]['author']),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            UserAccountsDrawerHeader(
+              accountName: Text(widget.username),
+              accountEmail: Text('hello.vinsanjay.me'),
+              currentAccountPicture: CircleAvatar(
+                backgroundColor: Colors.white,
+                child: Text(
+                  widget.username[0],
+                  style: TextStyle(fontSize: 40.0),
+                ),
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.home),
+              title: Text('Home'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Settings'),
+              onTap: () {
+                // Navigate to settings screen
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.info),
+              title: Text('About'),
+              onTap: () {
+                // Navigate to about screen
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.article),
+              title: Text('Blog Posts'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => BlogPostsScreen()),
                 );
               },
             ),
-          ),
-        ],
+            ListTile(
+              leading: Icon(Icons.exit_to_app),
+              title: Text('Logout'),
+              onTap: () {
+                Navigator.pushReplacementNamed(context, '/');
+              },
+            ),
+          ],
+        ),
+      ),
+      body: Center(
+        child: Text(
+          'Welcome to the Dashboard!',
+          style: TextStyle(fontSize: 24, color: Colors.deepPurple),
+          textAlign: TextAlign.center,
+        ),
       ),
     );
   }
