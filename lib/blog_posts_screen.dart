@@ -47,6 +47,9 @@ class _BlogPostsScreenState extends State<BlogPostsScreen> {
         return BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
           child: AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
             title: Text('Edit or Delete'),
             content: Text('Would you like to edit or delete this post?'),
             actions: [
@@ -76,6 +79,7 @@ class _BlogPostsScreenState extends State<BlogPostsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Blog Posts'),
+        backgroundColor: Color.fromARGB(255, 220, 186, 241),
       ),
       body: RefreshIndicator(
         onRefresh: _refreshBlogPosts,
@@ -98,56 +102,54 @@ class _BlogPostsScreenState extends State<BlogPostsScreen> {
                         onLongPress: () {
                           _showEditDeleteDialog(index);
                         },
-                        child: Container(
+                        child: Card(
                           margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
-                          padding: EdgeInsets.all(15.0),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
+                          elevation: 5,
+                          shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15.0),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.3),
-                                spreadRadius: 2,
-                                blurRadius: 5,
-                                offset: Offset(0, 3),
-                              ),
-                            ],
                           ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                blogPosts[index]['title'],
-                                style: TextStyle(
-                                  fontSize: 22.0,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.deepPurple,
+                          child: Padding(
+                            padding: EdgeInsets.all(15.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  blogPosts[index]['title'],
+                                  style: TextStyle(
+                                    fontSize: 22.0,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.deepPurple,
+                                  ),
                                 ),
-                              ),
-                              SizedBox(height: 8.0),
-                              Text(
-                                'by ${blogPosts[index]['author']}',
-                                style: TextStyle(
-                                  fontSize: 16.0,
-                                  color: Colors.grey[600],
+                                SizedBox(height: 8.0),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'by ${blogPosts[index]['author']}',
+                                      style: TextStyle(
+                                        fontSize: 16.0,
+                                        color: Colors.grey[600],
+                                      ),
+                                    ),
+                                    Text(
+                                      blogPosts[index]['date'],
+                                      style: TextStyle(
+                                        fontSize: 14.0,
+                                        color: Colors.grey[400],
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ),
-                              SizedBox(height: 8.0),
-                              Text(
-                                'Date: ${blogPosts[index]['date']}',
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                  color: Colors.grey[400],
+                                SizedBox(height: 12.0),
+                                Text(
+                                  blogPosts[index]['content'],
+                                  style: TextStyle(fontSize: 16.0),
+                                  maxLines: 3,
+                                  overflow: TextOverflow.ellipsis,
                                 ),
-                              ),
-                              SizedBox(height: 12.0),
-                              Text(
-                                blogPosts[index]['content'],
-                                style: TextStyle(fontSize: 16.0),
-                                maxLines: 3,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       );
