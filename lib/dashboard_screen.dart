@@ -53,13 +53,23 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 ),
               ),
             ),
-            ListTile(
-              leading: Icon(Icons.home),
-              title: Text('Home'),
+                        ListTile(
+              leading: Icon(Icons.article),
+              title: Text('Blog Posts'),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => BlogPostsScreen()),
+                );
               },
             ),
+            // ListTile(
+            //   leading: Icon(Icons.home),
+            //   title: Text('Home'),
+            //   onTap: () {
+            //     Navigator.pop(context);
+            //   },
+            // ),
             ListTile(
               leading: Icon(Icons.settings),
               title: Text('Settings'),
@@ -74,16 +84,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 // Navigate to about screen
               },
             ),
-            ListTile(
-              leading: Icon(Icons.article),
-              title: Text('Blog Posts'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => BlogPostsScreen()),
-                );
-              },
-            ),
+
             ListTile(
               leading: Icon(Icons.exit_to_app),
               title: Text('Logout'),
