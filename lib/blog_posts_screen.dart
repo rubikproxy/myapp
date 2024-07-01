@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:ui';
 import 'api_service.dart';
 
 class BlogPostsScreen extends StatefulWidget {
@@ -20,7 +21,7 @@ class _BlogPostsScreenState extends State<BlogPostsScreen> {
     setState(() {
       isLoading = true;
     });
-    
+
     try {
       List<dynamic> posts = await ApiService.getBlogPosts();
       setState(() {
@@ -37,6 +38,37 @@ class _BlogPostsScreenState extends State<BlogPostsScreen> {
 
   Future<void> _refreshBlogPosts() async {
     await _fetchBlogPosts();
+  }
+
+  void _showEditDeleteDialog(int index) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+          child: AlertDialog(
+            title: Text('Edit or Delete'),
+            content: Text('Would you like to edit or delete this post?'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  // Implement your edit functionality here
+                },
+                child: Text('Edit'),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  // Implement your delete functionality here
+                },
+                child: Text('Delete'),
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 
   @override
@@ -63,8 +95,8 @@ class _BlogPostsScreenState extends State<BlogPostsScreen> {
                     itemCount: blogPosts.length,
                     itemBuilder: (context, index) {
                       return GestureDetector(
-                        onTap: () {
-                          // Navigate to detailed view of the blog post
+                        onLongPress: () {
+                          _showEditDeleteDialog(index);
                         },
                         child: Container(
                           margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
@@ -114,31 +146,6 @@ class _BlogPostsScreenState extends State<BlogPostsScreen> {
                                 style: TextStyle(fontSize: 16.0),
                                 maxLines: 3,
                                 overflow: TextOverflow.ellipsis,
-                              ),
-                              SizedBox(height: 12.0),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  TextButton(
-                                    onPressed: () {
-                                      // Implement Edit functionality
-                                    },
-                                    child: Text(
-                                      'Edit',
-                                      style: TextStyle(color: Colors.orange),
-                                    ),
-                                  ),
-                                  SizedBox(width: 10.0),
-                                  TextButton(
-                                    onPressed: () {
-                                      // Implement Delete functionality
-                                    },
-                                    child: Text(
-                                      'Delete',
-                                      style: TextStyle(color: Colors.red),
-                                    ),
-                                  ),
-                                ],
                               ),
                             ],
                           ),
