@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-class ApiIndexScreen extends StatefulWidget {
+class Portoflio extends StatefulWidget {
   @override
-  _ApiIndexScreenState createState() => _ApiIndexScreenState();
+  _PortoflioState createState() => _PortoflioState();
 }
 
-class _ApiIndexScreenState extends State<ApiIndexScreen> {
+class _PortoflioState extends State<Portoflio> {
   @override
   void initState() {
     super.initState();
@@ -17,11 +17,11 @@ class _ApiIndexScreenState extends State<ApiIndexScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('API Index'),
+        title: Text('Portfolio'),
         backgroundColor: Colors.deepPurple,
       ),
       body: WebView(
-        initialUrl: 'https://api.vinsanjay.me',
+        initialUrl: 'https://vinsanjay.me',
         javascriptMode: JavascriptMode.unrestricted,
       ),
     );

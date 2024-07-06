@@ -79,8 +79,9 @@ class _BlogPostsScreenState extends State<BlogPostsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Blog Posts'),
-        backgroundColor: Color.fromARGB(255, 220, 186, 241),
+        backgroundColor: Colors.deepPurple,
       ),
+      backgroundColor: Colors.black, // Set the background color to dark black
       body: RefreshIndicator(
         onRefresh: _refreshBlogPosts,
         child: isLoading
@@ -91,7 +92,7 @@ class _BlogPostsScreenState extends State<BlogPostsScreen> {
                 ? Center(
                     child: Text(
                       'No blog posts available.',
-                      style: TextStyle(fontSize: 18, color: Colors.grey),
+                      style: TextStyle(fontSize: 18, color: Color.fromARGB(179, 22, 22, 22)),
                       textAlign: TextAlign.center,
                     ),
                   )
@@ -104,11 +105,19 @@ class _BlogPostsScreenState extends State<BlogPostsScreen> {
                         },
                         child: Card(
                           margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
-                          elevation: 5,
+                          elevation: 10,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15.0),
                           ),
-                          child: Padding(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [Colors.black.withOpacity(0.7), Colors.black.withOpacity(0.9)],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
+                              borderRadius: BorderRadius.circular(15.0),
+                            ),
                             padding: EdgeInsets.all(15.0),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -118,7 +127,7 @@ class _BlogPostsScreenState extends State<BlogPostsScreen> {
                                   style: TextStyle(
                                     fontSize: 22.0,
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.deepPurple,
+                                    color: Colors.deepPurpleAccent,
                                   ),
                                 ),
                                 SizedBox(height: 8.0),
@@ -129,14 +138,14 @@ class _BlogPostsScreenState extends State<BlogPostsScreen> {
                                       'by ${blogPosts[index]['author']}',
                                       style: TextStyle(
                                         fontSize: 16.0,
-                                        color: Colors.grey[600],
+                                        color: const Color.fromARGB(255, 255, 255, 255),
                                       ),
                                     ),
                                     Text(
                                       blogPosts[index]['date'],
                                       style: TextStyle(
                                         fontSize: 14.0,
-                                        color: Colors.grey[400],
+                                        color: Color.fromARGB(255, 255, 255, 255),
                                       ),
                                     ),
                                   ],
@@ -144,7 +153,7 @@ class _BlogPostsScreenState extends State<BlogPostsScreen> {
                                 SizedBox(height: 12.0),
                                 Text(
                                   blogPosts[index]['content'],
-                                  style: TextStyle(fontSize: 16.0),
+                                  style: TextStyle(fontSize: 16.0, color: const Color.fromARGB(179, 22, 22, 22)),
                                   maxLines: 3,
                                   overflow: TextOverflow.ellipsis,
                                 ),
