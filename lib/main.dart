@@ -4,7 +4,7 @@ import 'dashboard_screen.dart';
 import 'blog_posts_screen.dart';
 import 'about_screen.dart'; // Import your AboutScreen
 import 'api_index.dart'; // Import your ApiIndexScreen
-import 'settings_screen.dart';
+// import 'settings_screen.dart';
 import 'portoflio.dart';
 
 void main() {
@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
         '/blogposts': (context) => BlogPostsScreen(),
         '/api-index': (context) => ApiIndexScreen(), // Route for ApiIndexScreen
         '/about': (context) => AboutScreen(), // Route for AboutScreen
-        '/settings': (context) => SettingsScreen(),
+        // '/settings': (context) => SettingsScreen(),
         '/portfolio': (context) => Portoflio()
       },
     );

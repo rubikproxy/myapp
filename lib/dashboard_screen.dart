@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'about_screen.dart';
 import 'blog_posts_screen.dart';
-import 'settings_screen.dart'; // Import your SettingsScreen
+// import 'settings_screen.dart'; // Import your SettingsScreen
 
 class DashboardScreen extends StatefulWidget {
   final String username;
@@ -82,16 +82,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 Navigator.pushNamed(context, '/api-index');
               },
             ),
-            ListTile(
-              leading: Icon(Icons.settings, color: Colors.deepPurpleAccent),
-              title: Text('Settings'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SettingsScreen()),
-                );
-              },
-            ),
+            // ListTile(
+            //   leading: Icon(Icons.settings, color: Colors.deepPurpleAccent),
+            //   title: Text('Settings'),
+            //   onTap: () {
+            //     Navigator.push(
+            //       context,
+            //       MaterialPageRoute(builder: (context) => SettingsScreen()),
+            //     );
+            //   },
+            // ),
             ListTile(
               leading: Icon(Icons.info, color: Colors.deepPurpleAccent),
               title: Text('About'),
