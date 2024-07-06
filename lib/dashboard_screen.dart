@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'blog_posts_screen.dart';
+import 'api_index.dart';
 
 class DashboardScreen extends StatefulWidget {
   final String username;
@@ -44,7 +45,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           children: <Widget>[
             UserAccountsDrawerHeader(
               accountName: Text(widget.username),
-              accountEmail: Text('hello.vinsanjay.me'),
+              accountEmail: Text('vinsanjay.me'),
               currentAccountPicture: CircleAvatar(
                 backgroundColor: Colors.white,
                 child: Text(
@@ -53,7 +54,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 ),
               ),
             ),
-                        ListTile(
+            ListTile(
               leading: Icon(Icons.article),
               title: Text('Blog Posts'),
               onTap: () {
@@ -63,13 +64,23 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 );
               },
             ),
-            // ListTile(
-            //   leading: Icon(Icons.home),
-            //   title: Text('Home'),
-            //   onTap: () {
-            //     Navigator.pop(context);
-            //   },
-            // ),
+            ListTile(
+              leading: Icon(Icons.pie_chart),
+              title: Text('Portfolio'),
+              onTap: () {
+                // Navigate to portfolio screen
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.api),
+              title: Text('API-Index'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ApiIndexScreen()),
+                );
+              },
+            ),
             ListTile(
               leading: Icon(Icons.settings),
               title: Text('Settings'),
@@ -84,7 +95,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 // Navigate to about screen
               },
             ),
-
             ListTile(
               leading: Icon(Icons.exit_to_app),
               title: Text('Logout'),

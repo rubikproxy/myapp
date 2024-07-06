@@ -9,6 +9,7 @@ dependencies:
   flutter:
     sdk: flutter
   http: ^0.13.3
+  webview_flutter: ^3.0.4
   # simple_animations: ^5.0.2  # Add this line for supercharged
 
 dev_dependencies:
